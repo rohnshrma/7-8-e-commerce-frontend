@@ -1,25 +1,76 @@
+/* =====================================================
+   GLOBAL THEME – GLASSMORPHIC E‑COMMERCE + BOOTSTRAP 4.5
+   Palette: Vibrant Coral, Strong Cyan, Banana Cream, Ivory, Dust Grey
+   ===================================================== */
+
 :root {
-  --primary: #ff6b6b;
-  --primary-dark: #e63946;
-  --accent: #4ecdc4;
-  --bg: #0f172a;
-  --bg-light: #111827;
-  --card-bg: #1f2937;
-  --text-main: #f9fafb;
-  --text-muted: #9ca3af;
+  /* Core surfaces & background */
+  --bg: #ffffea; /* Ivory */
+  --surface: rgba(255, 255, 255, 0.72); /* Glass panel */
+  --surface-soft: rgba(255, 255, 255, 0.5);
+
+  /* Brand colors – taken from palette */
+  --primary: #00cecb; /* Strong Cyan */
+  --primary-soft: rgba(0, 206, 203, 0.16);
+  --accent: #ff5e5b; /* Vibrant Coral */
+  --accent-soft: rgba(255, 94, 91, 0.16);
+  --highlight: #ffed66; /* Banana Cream */
+  --neutral-soft: #d8d8d8; /* Dust Grey */
+
+  --text-main: #111827;
+  --text-muted: #6b7280;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.9rem;
+  --radius-lg: 1.25rem;
+  --radius-full: 999px;
+
+  --shadow-md: 0 18px 40px rgba(15, 23, 42, 0.16);
+  --shadow-sm: 0 8px 20px rgba(15, 23, 42, 0.12);
+
+  /* Glassmorphism helpers */
+  --glass-border-soft: 1px solid rgba(255, 255, 255, 0.55);
+  --glass-border-strong: 1px solid rgba(255, 255, 255, 0.8);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  font-family:
+    "Poppins",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
     sans-serif;
-  background: radial-gradient(circle at top left, #1f2933, #020617 55%);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(0, 206, 203, 0.25) 0, transparent 55%),
+    radial-gradient(circle at 100% 0%, rgba(255, 94, 91, 0.22) 0, transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(255, 237, 102, 0.28) 0, transparent 55%),
+    linear-gradient(135deg, #eef2ff, #e5e7eb);
   color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
 }
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================================================
+   APP SHELL
+   ===================================================== */
 
 .app-shell {
   min-height: 100vh;
@@ -29,242 +80,469 @@ body {
 
 .app-main {
   flex: 1;
-  padding: 2rem 0;
+  padding: 2.5rem 0 2rem;
 }
 
-.glass-card {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(17, 24, 39, 0.98));
-  border-radius: 1.25rem;
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  box-shadow:
-    0 20px 60px rgba(15, 23, 42, 0.85),
-    0 0 0 1px rgba(148, 163, 184, 0.15);
+/* =====================================================
+   NAVBAR – GLASS TOP BAR
+   ===================================================== */
+
+.navbar {
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  border: var(--glass-border-soft);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
 }
 
-.hero-gradient {
-  background: radial-gradient(circle at top left, rgba(255, 107, 107, 0.2), transparent),
-    radial-gradient(circle at bottom right, rgba(78, 205, 196, 0.15), transparent);
-  border-radius: 2rem;
-  padding: 2.5rem;
+.navbar-dark {
+  background: var(--surface) !important;
 }
 
-.hero-badge {
-  display: inline-flex;
+.navbar-brand {
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(148, 163, 184, 0.45);
-  color: var(--accent);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
-.hero-title {
   font-weight: 700;
-  font-size: clamp(2.3rem, 3vw, 3rem);
-}
-
-.hero-subtitle {
-  color: var(--text-muted);
-  max-width: 32rem;
-}
-
-.floating-pill {
-  padding: 0.5rem 1.2rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, rgba(255, 107, 107, 0.18), rgba(78, 205, 196, 0.18));
-  border: 1px solid rgba(248, 250, 252, 0.12);
-  color: rgba(249, 250, 251, 0.9);
-  font-size: 0.85rem;
-}
-
-.category-chip {
-  padding: 0.4rem 0.85rem;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  color: var(--text-muted);
-  font-size: 0.75rem;
-}
-
-.product-card {
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-6px) translateZ(0);
-  box-shadow:
-    0 24px 45px rgba(15, 23, 42, 0.85),
-    0 0 0 1px rgba(248, 250, 252, 0.12);
-  border-color: rgba(248, 250, 252, 0.22);
-}
-
-.product-img-wrapper {
-  position: relative;
-  border-radius: 1rem;
-  overflow: hidden;
-}
-
-.product-img-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent 60%);
-}
-
-.product-price-badge {
-  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.92);
-  border: 1px solid rgba(148, 163, 184, 0.6);
-  color: #e5e7eb;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.product-rating {
-  color: #facc15;
-  font-size: 0.8rem;
-}
-
-.product-tag {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-}
-
-.btn-pill {
-  border-radius: 999px;
-  padding-inline: 1.4rem;
-  font-weight: 500;
-}
-
-.btn-ghost {
-  background: transparent;
-  border-color: rgba(148, 163, 184, 0.5);
-  color: var(--text-main);
-}
-
-.btn-ghost:hover {
-  background: rgba(15, 23, 42, 0.9);
+  letter-spacing: 0.03em;
 }
 
 .navbar-brand span {
-  background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar-brand i {
+  margin-right: 0.5rem;
+  color: var(--primary);
+}
+
+.navbar-nav .nav-link {
+  color: var(--text-muted) !important;
+  font-weight: 500;
+  padding: 0.35rem 0.9rem !important;
+  border-radius: 999px;
+  transition: all 0.18s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: var(--text-main) !important;
+  background: var(--primary-soft);
+}
+
+.navbar-toggler {
+  border-radius: 999px;
+  background: var(--surface-soft);
+  box-shadow: var(--shadow-sm);
+  border: none;
+}
+
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}
+
+.badge.badge-warning {
+  background: var(--highlight);
+  color: #92400e;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Search boxes */
+.input-group-text.bg-light,
+.form-control.border-0 {
+  background: transparent !important;
+  border: none !important;
+}
+
+.input-group {
+  border-radius: var(--radius-full);
+  background: var(--surface-soft);
+  border: var(--glass-border-soft);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  overflow: hidden;
+}
+
+.input-group .form-control {
+  background: transparent;
+}
+
+.input-group .form-control:focus {
+  box-shadow: none;
+}
+
+/* =====================================================
+   HERO / JUMBOTRON – GLASS MARKETING STRIP
+   ===================================================== */
+
+.jumbotron {
+  background:
+    radial-gradient(circle at top left, rgba(0, 206, 203, 0.14) 0, transparent 55%),
+    radial-gradient(circle at bottom right, rgba(255, 237, 102, 0.18) 0, transparent 60%),
+    var(--surface-soft);
+  border-radius: var(--radius-lg);
+  border: var(--glass-border-soft);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  padding: 2.5rem 2.25rem;
+}
+
+.jumbotron .display-5 {
   font-weight: 700;
 }
 
-.nav-link {
+.jumbotron .lead {
+  color: var(--text-muted);
+}
+
+.jumbotron img {
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* =====================================================
+   PRODUCT GRID / CARDS – GLASS PANELS
+   ===================================================== */
+
+.card {
+  border-radius: var(--radius-md);
+  border: var(--glass-border-soft);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-img-top,
+.img-fluid.rounded {
+  border-radius: var(--radius-md);
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.card-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* =====================================================
+   BUTTONS – PRIMARY / GHOST / SECONDARY
+   ===================================================== */
+
+.btn {
+  border-radius: var(--radius-full);
   font-weight: 500;
-  color: #e5e7eb !important;
+  padding: 0.55rem 1.4rem;
+  border-width: 1px;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
-.nav-link.active {
-  color: var(--accent) !important;
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 206, 203, 0.4);
 }
 
-.nav-pill {
-  border-radius: 999px;
-  padding: 0.35rem 0.9rem;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(148, 163, 184, 0.4);
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #f9fafb;
+  border-color: transparent;
+  box-shadow: var(--shadow-sm);
 }
 
-.badge-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 999px;
-  background: var(--accent);
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  transform: translateY(-1px);
 }
 
-.cart-count-badge {
-  min-width: 1.3rem;
-  height: 1.3rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  line-height: 1.3rem;
+.btn-outline-secondary,
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text-main);
+  box-shadow: var(--shadow-sm);
+  border-color: rgba(148, 163, 184, 0.6);
 }
 
-.auth-card {
-  max-width: 420px;
+.btn-outline-secondary:hover,
+.btn-secondary:hover {
+  background: var(--surface-soft);
+}
+
+.btn-lg {
+  padding: 0.7rem 1.8rem;
+}
+
+.btn-sm {
+  padding: 0.3rem 0.9rem;
+}
+
+/* Ghost-style buttons */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-main);
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.btn-ghost:hover {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+/* =====================================================
+   FORMS – LOGIN / REGISTER / ADD PRODUCT (GLASS CARDS)
+   ===================================================== */
+
+.auth-card,
+.neo-form-card {
+  max-width: 440px;
   margin: 0 auto;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: var(--glass-border-soft);
+  backdrop-filter: blur(22px) saturate(1.4);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4);
+  padding: 2rem 2.25rem;
 }
 
-.auth-input {
-  background: rgba(15, 23, 42, 0.95);
-  border-color: rgba(148, 163, 184, 0.35);
+.auth-input,
+.form-control {
+  border-radius: var(--radius-sm);
+  border: var(--glass-border-soft);
+  background: var(--surface-soft);
   color: var(--text-main);
 }
 
-.auth-input::placeholder {
-  color: #6b7280;
+.auth-input::placeholder,
+.form-control::placeholder {
+  color: var(--text-muted);
 }
 
-.auth-input:focus {
-  background: rgba(15, 23, 42, 0.98);
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px rgba(78, 205, 196, 0.4);
+.auth-input:focus,
+.form-control:focus {
+  box-shadow: 0 0 0 2px rgba(0, 206, 203, 0.35);
 }
 
-.table-cart thead th {
+.form-check-input {
+  background-color: var(--surface-soft);
+  border-radius: 4px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+}
+
+.form-check-input:checked {
+  background-color: var(--primary);
+}
+
+/* =====================================================
+   TABLES / CART
+   ===================================================== */
+
+.table {
+  background: transparent;
+  margin-bottom: 0;
+}
+
+.table thead th {
   border-top: none;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+  border-bottom: 2px solid rgba(191, 198, 211, 0.8);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
-.table-cart td,
-.table-cart th {
-  border-color: rgba(31, 41, 55, 0.9);
+.table tbody tr {
+  border-bottom: 1px solid rgba(191, 198, 211, 0.5);
+}
+
+.table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+/* Cart summary / side panel */
+.neo-summary {
+  background: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: var(--glass-border-soft);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  padding: 1.5rem;
+}
+
+/* =====================================================
+   TYPOGRAPHY & UTILITIES
+   ===================================================== */
+
+.page-title,
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text-main);
+  font-weight: 600;
 }
 
 .page-title {
-  font-weight: 600;
+  font-size: 2rem;
 }
 
 .page-subtitle {
   color: var(--text-muted);
+  font-size: 0.95rem;
 }
 
-.empty-state {
-  border-radius: 1.25rem;
-  border: 1px dashed rgba(148, 163, 184, 0.6);
-  background: rgba(15, 23, 42, 0.7);
+.text-muted {
+  color: var(--text-muted) !important;
 }
 
 .badge-soft {
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   padding: 0.25rem 0.7rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
 }
 
 .badge-soft-success {
-  background: rgba(22, 163, 74, 0.12);
-  color: #bbf7d0;
-}
-
-.badge-soft-warning {
-  background: rgba(234, 179, 8, 0.12);
-  color: #fef08a;
+  background: rgba(34, 197, 94, 0.14);
+  color: #15803d;
 }
 
 .badge-soft-danger {
-  background: rgba(239, 68, 68, 0.14);
-  color: #fecaca;
+  background: rgba(248, 113, 113, 0.14);
+  color: #b91c1c;
+}
+
+.badge-soft-warning {
+  background: rgba(250, 204, 21, 0.14);
+  color: #92400e;
 }
 
 .footer-muted {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
+}
+
+.footer-muted .text-danger {
+  color: var(--accent) !important;
+}
+
+/* Empty states */
+.empty-state {
+  padding: 2.5rem 1.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  border: var(--glass-border-soft);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  text-align: center;
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+}
+
+/* Clamp product titles if needed */
+.product-title-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-desc-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* =====================================================
+   RESPONSIVE TWEAKS
+   ===================================================== */
+
+@media (max-width: 991.98px) {
+  .app-main {
+    padding-top: 1.75rem;
+  }
+
+  .jumbotron {
+    padding: 2rem 1.75rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .jumbotron {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .btn {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.9rem;
+  }
+
+  .navbar-brand span {
+    font-size: 1.1rem;
+  }
+}
+
+/* =====================================================
+   SCROLLBAR / SELECTION (OPTIONAL POLISH)
+   ===================================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c2c8d4;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a6aebe;
+}
+
+::selection {
+  background: rgba(0, 206, 203, 0.3);
+  color: var(--text-main);
 }
 

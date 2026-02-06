@@ -1,6 +1,12 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
+import React from "react";
+import Navbar from "./components/Navbar";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Products from "./pages/Products";
+import AddProduct from "./pages/AddProduct";
 
 // NOTE FOR STUDENTS:
 // - This file currently always renders <Home />.
@@ -19,15 +25,24 @@ const App = () => {
       <main className="app-main">
         <div className="container">
           {/* TODO: Replace this with Routes based on current URL */}
-          <Home />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/add-product" element={<AddProduct />} />
+          </Routes>
         </div>
       </main>
 
       <footer className="py-4 text-center footer-muted">
-        Built with <span className="text-danger">&hearts;</span> for MERN E‑Commerce practice.
+        Built with <span className="text-danger">&hearts;</span> for MERN
+        E‑Commerce practice.
         <br />
         <span className="text-secondary">
-          Add all logic using React Context API, reducers, and your own components.
+          Add all logic using React Context API, reducers, and your own
+          components.
         </span>
       </footer>
     </div>
@@ -35,4 +50,3 @@ const App = () => {
 };
 
 export default App;
-

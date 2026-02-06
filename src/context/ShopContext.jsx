@@ -19,6 +19,8 @@
 //
 // Only UI is provided in components; you wire these actions.
 
+import { createContext, useReducer } from "react";
+
 // Example structure (DO NOT UNCOMMENT, WRITE YOUR OWN IMPLEMENTATION):
 //
 // import React, { createContext, useReducer } from 'react';
@@ -43,3 +45,37 @@
 //   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 // };
 
+const ShopContext = createContext();
+
+const cartInitialState = {
+  cartItems: [],
+  cartTotal: 0,
+};
+
+const cartReducer = (state, action) => {
+  return state;
+};
+export const ShopProvider = ({ children }) => {
+  const [cart, dispatch] = useReducer(cartReducer, cartInitialState);
+
+  const addItemToCart = (product) => {
+    dispatch({ type: "ADD", payload: product });
+  };
+  const removeItemFromCart = (id) => {
+    dispatch({ type: "REMOVE", payload: id });
+  };
+
+  const updateItemInCart = (info) => {
+    dispatch({ type: "UPDATE", payload: info });
+  };
+
+  return (
+    <ShopContext.Provider
+      value={{ cart, addItemToCart, removeItemFromCart, updateItemInCart }}
+    >
+      {children}
+    </ShopContext.Provider>
+  );
+};
+
+export default ShopContext;

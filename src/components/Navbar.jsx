@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
 // NOTE:
 // - All numbers, login state, and navigation are STATIC placeholders.
@@ -9,83 +10,63 @@ import React from 'react';
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-transparent border-bottom border-secondary">
-      <div className="container">
-        <a className="navbar-brand d-flex align-items-center" href="#">
-          <span className="mr-2">
-            <i className="fas fa-shopping-bag" />
-          </span>
-          <span>ShopSmart</span>
-        </a>
+    <nav className="navbar navbar-expand-lg navbar-dark">
+      <div className="container-fluid px-4">
+        <Link className="navbar-brand d-flex align-items-center" to="/">
+          <i className="fas fa-shopping-bag mr-2" />
+          <span className="font-weight-bold">ShopSmart</span>
+        </Link>
 
         <button
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarContent"
-          aria-controls="navbarContent"
+          data-target="#navbarMain"
+          aria-controls="navbarMain"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarContent">
-          <ul className="navbar-nav ml-auto align-items-lg-center">
-            <li className="nav-item mx-lg-1">
-              {/* TODO: Replace href with <Link> to Home route */}
-              <a className="nav-link active" href="#">
-                <i className="fas fa-fire mr-1" />
+        <div
+          className="collapse navbar-collapse justify-content-between"
+          id="navbarMain"
+        >
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">
                 Home
-              </a>
+              </Link>
             </li>
-            <li className="nav-item mx-lg-1">
-              {/* TODO: Route to Products page */}
-              <a className="nav-link" href="#">
-                <i className="fas fa-th-large mr-1" />
-                All Products
-              </a>
+            <li className="nav-item">
+              <Link className="nav-link" to="/products">
+                Products
+              </Link>
             </li>
-            <li className="nav-item mx-lg-1">
-              {/* TODO: Route to Add Product page & protect for admin if needed */}
-              <a className="nav-link" href="#">
-                <i className="fas fa-plus-circle mr-1" />
+            <li className="nav-item">
+              <Link className="nav-link" to="/add-product">
                 Add Product
-              </a>
+              </Link>
             </li>
-
-            <li className="nav-item mx-lg-2 my-2 my-lg-0">
-              {/* TODO: Replace hardcoded "3" with cart length from Context */}
-              <div className="nav-pill d-flex align-items-center">
-                <i className="fas fa-shopping-cart mr-2" />
-                <span>Cart</span>
-                <span className="badge badge-pill badge-primary cart-count-badge ml-2">
-                  3
-                </span>
-              </div>
+            <li className="nav-item">
+              <Link className="nav-link" to="/cart">
+                Cart
+              </Link>
             </li>
+          </ul>
 
-            {/* TODO: Conditionally render this block based on auth state from Context */}
-            <li className="nav-item mx-lg-1">
-              <a className="nav-link" href="#">
-                <i className="far fa-user mr-1" />
+          <ul className="navbar-nav align-items-center">
+            <li className="nav-item">
+              <Link className="nav-link" to="/login">
                 Login
-              </a>
+              </Link>
             </li>
-            <li className="nav-item mx-lg-1">
-              <a className="btn btn-sm btn-pill btn-primary" href="#">
+            <li className="nav-item">
+              <Link className="btn btn-sm btn-primary ml-lg-2" to="/register">
                 Register
-              </a>
+              </Link>
             </li>
-
-            {/* Example of how Logout could look visually (keep commented for reference)
-            <li className="nav-item mx-lg-1">
-              <button className="btn btn-sm btn-pill btn-outline-light">
-                <i className="fas fa-sign-out-alt mr-1" />
-                Logout
-              </button>
-            </li>
-            */}
           </ul>
         </div>
       </div>
@@ -94,4 +75,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

@@ -9,21 +9,15 @@ import ProductCard from '../components/productCard';
 
 const Products = () => {
   return (
-    <div className="glass-card p-4 p-md-5">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <div>
-          <h2 className="page-title mb-1">All Products</h2>
-          <p className="page-subtitle mb-0">
-            Render this grid from your global products array in Context instead of static
-            components.
-          </p>
-        </div>
-        <div className="d-none d-md-flex">
-          <button className="btn btn-sm btn-pill btn-ghost mr-2">
+    <div className="container-fluid mt-3">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h2 className="h4 mb-0">All Products</h2>
+        <div className="btn-group btn-group-sm" role="group" aria-label="Filters">
+          <button className="btn btn-outline-secondary">
             <i className="fas fa-sliders-h mr-1" />
-            Filters
+            Filter
           </button>
-          <button className="btn btn-sm btn-pill btn-ghost">
+          <button className="btn btn-outline-secondary">
             <i className="fas fa-sort-amount-down mr-1" />
             Sort
           </button>
@@ -32,22 +26,28 @@ const Products = () => {
 
       <div className="row">
         {/* TODO: Replace these with products.map(...) from Context */}
-        <div className="col-sm-6 col-md-4 mb-4">
+        <div className="col-12 col-md-6 col-lg-4 mb-4">
           <ProductCard />
         </div>
-        <div className="col-sm-6 col-md-4 mb-4">
+        <div className="col-12 col-md-6 col-lg-4 mb-4">
           <ProductCard />
         </div>
-        <div className="col-sm-6 col-md-4 mb-4">
+        <div className="col-12 col-md-6 col-lg-4 mb-4">
           <ProductCard />
         </div>
-        <div className="col-sm-6 col-md-4 mb-4">
+        <div className="col-12 col-md-6 col-lg-4 mb-4">
           <ProductCard />
         </div>
-        <div className="col-sm-6 col-md-4 mb-4">
+        <div className="col-12 col-md-6 col-lg-4 mb-4">
           <ProductCard />
         </div>
-        <div className="col-sm-6 col-md-4 mb-4">
+        <div className="col-12 col-md-6 col-lg-4 mb-4">
+          <ProductCard />
+        </div>
+        <div className="col-12 col-md-6 col-lg-4 mb-4">
+          <ProductCard />
+        </div>
+        <div className="col-12 col-md-6 col-lg-4 mb-4">
           <ProductCard />
         </div>
       </div>
