@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ProductCard from '../components/productCard';
+import { ShopContext } from '../context/ShopContext';
 
 // Products page:
 // - Shows a grid of ProductCard components.
@@ -8,6 +9,8 @@ import ProductCard from '../components/productCard';
 //   - Implement filters, search, sorting etc. if needed.
 
 const Products = () => {
+  const { products } = useContext(ShopContext);
+
   return (
     <div className="container-fluid mt-3">
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -25,31 +28,14 @@ const Products = () => {
       </div>
 
       <div className="row">
-        {/* TODO: Replace these with products.map(...) from Context */}
-        <div className="col-12 col-md-6 col-lg-4 mb-4">
-          <ProductCard />
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb-4">
-          <ProductCard />
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb-4">
-          <ProductCard />
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb-4">
-          <ProductCard />
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb-4">
-          <ProductCard />
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb-4">
-          <ProductCard />
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb-4">
-          <ProductCard />
-        </div>
-        <div className="col-12 col-md-6 col-lg-4 mb-4">
-          <ProductCard />
-        </div>
+        {products.map((product) => (
+          <div
+            className="col-12 col-md-6 col-lg-4 mb-4"
+            key={product.id}
+          >
+            <ProductCard product={product} />
+          </div>
+        ))}
       </div>
     </div>
   );
